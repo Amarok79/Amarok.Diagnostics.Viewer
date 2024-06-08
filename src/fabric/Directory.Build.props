@@ -1,0 +1,29 @@
+<Project>
+
+    <PropertyGroup>
+        <Version>0.10.0</Version>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RootNamespace>Amarok</RootNamespace>
+        <Nullable>Enable</Nullable>
+        <ImplicitUsings>Enable</ImplicitUsings>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <WarningLevel>9999</WarningLevel>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <UseArtifactsOutput>True</UseArtifactsOutput>
+        <ArtifactsPath>$(SolutionDir)bin\fabric</ArtifactsPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
+        <Nullable>Disable</Nullable>
+        <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('_wpftmp'))">
+        <UseArtifactsOutput>False</UseArtifactsOutput>
+    </PropertyGroup>
+
+</Project>

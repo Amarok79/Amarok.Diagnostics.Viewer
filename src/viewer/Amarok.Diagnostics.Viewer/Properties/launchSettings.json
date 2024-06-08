@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Amarok.Diagnostics.Viewer": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\dev\\counter2.csv"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+﻿<UserControl
+    x:Class="Amarok.Views.Charts.Chart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:a="http://github.com/Amarok79/Amarok.Fabric.Wpf"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sp="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:vm="clr-namespace:Amarok.Views.Charts"
+    d:DataContext="{d:DesignInstance vm:ChartVm, IsDesignTimeCreatable=False}"
+    d:DesignHeight="400"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <ui:Card
+        Margin="8"
+        IsEnabled="{Binding IsLoading, Converter={a:NotConverter}}">
+
+        <Grid
+            Height="400">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="*" />
+            </Grid.RowDefinitions>
+
+            <ComboBox
+                Grid.Row="0"
+                Grid.Column="0"
+                ItemsSource="{Binding Counters}"
+                SelectedItem="{Binding SelectedCounter}">
+            </ComboBox>
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="8,0,8,0"
+                Padding="4"
+                VerticalAlignment="Center"
+                Command="{Binding ResetZoomCommand}"
+                ToolTipService.ToolTip="Reset zoom">
+                <ui:ImageIcon
+                    Width="24"
+                    Height="24"
+                    Source="/assets/search.png">
+                </ui:ImageIcon>
+            </Button>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="8"
+                VerticalAlignment="Center"
+                Text="{Binding CurrentValue}"
+                TextAlignment="Right"
+                TextWrapping="NoWrap">
+            </TextBlock>
+
+            <sp:WpfPlot
+                x:Name="Diagram"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0,4,0,0">
+            </sp:WpfPlot>
+
+            <ui:ProgressRing
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                IsIndeterminate="True"
+                Visibility="{Binding IsLoading, Converter={a:HiddenWhenFalseConverter}}">
+            </ui:ProgressRing>
+
+        </Grid>
+
+    </ui:Card>
+
+</UserControl>
