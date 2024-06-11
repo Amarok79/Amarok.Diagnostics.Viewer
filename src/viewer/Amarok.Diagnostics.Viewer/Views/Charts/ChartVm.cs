@@ -103,11 +103,10 @@ public partial class ChartVm : ObservableObject
         var xs = dataPoints.Select(x => x.Timestamp).ToArray();
         var ys = dataPoints.Select(x => x.Value).ToArray();
         
-        var scatter = Diagram.Plot.Add.Scatter(xs, ys);
+        var scatter = Diagram.Plot.Add.SignalXY(xs, ys);
         
         scatter.LineWidth    = 1.0f;
         scatter.ConnectStyle = ConnectStyle.Straight;
-        scatter.Smooth       = false;
         scatter.MarkerShape  = MarkerShape.None;
         
         Diagram.Plot.Axes.DateTimeTicksBottom();
